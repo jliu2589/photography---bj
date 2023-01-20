@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Navbar() {
   //Toggle Hamburger Menu
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const handleClick = () => {
     setToggle(!toggle);
   };
@@ -25,14 +25,18 @@ function Navbar() {
     };
   }, [toggle]);
   return (
-    <div>
+    <div className="relative">
       <nav className="flex flex-row justify-between">
         <div className="">Logo</div>
         <button className="hamburger-button mr-1 p-3" onClick={handleClick}>
           <MdMenu />
         </button>
       </nav>
-      <div className={`${toggle ? "block" : "hidden"} menu`}>
+      <div
+        className={`${
+          toggle ? "block" : "hidden"
+        } menu absolute w-full bg-white text-center`}
+      >
         <ul className="my-1 text-center">About us</ul>
         <ul className="my-1 text-center">Gallery</ul>
         <ul className="my-1 text-center">Rates</ul>
