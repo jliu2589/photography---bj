@@ -19,24 +19,48 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormSchema>({ resolver: zodResolver });
+  } = useForm(zodResolver(formSchema));
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => console.log(data);
+  //<FormSchema>({ resolver: zodResolver });
+
+  const onSubmit = (data) => console.log(data);
+
+  console.log(errors);
+  //: SubmitHandler<FormSchema>
   return (
     <div className="border border-white bg-yellow-100 p-4">
-      <form className="flex flex-col">
-        <label className="py-1 text-black">Name</label>
-        <input id="name" type="text" {...register("name")} />
-        <label className="py-1 text-black">Email</label>
-        <input id="email" type="text" {...register("email")} />
-        <label className="py-1 text-black">Phone</label>
-        <input id="phone" type="text" {...register("phone")} />
-        <label className="py-1 text-black">Message</label>
-        <input id="message" type="text" {...register("message")} />
-        <button
-          className="mt-2 bg-blue-400 p-3"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <input
+          id="name"
+          type="text"
+          {...(register("name"), { required: true })}
+          placeholder="Name"
+          className="my-1"
+        />
+        <input
+          id="email"
+          type="text"
+          {...(register("email"), { required: true })}
+          placeholder="Email"
+          className="my-1"
+        />
+        <input
+          id="phone"
+          type="text"
+          {...(register("phone"), { required: true })}
+          placeholder="Phone"
+          className="my-1"
+        />
+        <textarea
+          id="message"
+          type="text"
+          {...(register("message"), { required: true })}
+          placeholder="Message"
+          className="mt-1"
+          rows="5"
+          cols="30"
+        />
+        <button className="mt-2 bg-blue-400 p-3" type="submit">
           Submit
         </button>
       </form>
