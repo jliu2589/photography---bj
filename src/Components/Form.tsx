@@ -19,7 +19,7 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(zodResolver(formSchema));
+  } = useForm({ resolver: zodResolver(formSchema) });
 
   //<FormSchema>({ resolver: zodResolver });
 
@@ -30,13 +30,15 @@ function Form() {
   return (
     <div className="border border-white bg-yellow-100 p-4">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          id="name"
-          type="text"
-          {...(register("name"), { required: true })}
-          placeholder="Name"
-          className="my-1"
-        />
+        <label>
+          <input
+            id="name"
+            type="text"
+            {...(register("name"), { required: true })}
+            placeholder="Name"
+            className="my-1"
+          />
+        </label>
         <input
           id="email"
           type="text"

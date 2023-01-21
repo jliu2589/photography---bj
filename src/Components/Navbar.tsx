@@ -1,4 +1,5 @@
 import { MdMenu } from "react-icons/md";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -9,21 +10,10 @@ function Navbar() {
     setToggle(!toggle);
   };
 
-  //Close menu if click anywhere on Screen
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        e.target.closest(".menu") === null &&
-        e.target.closest(".hamburger-button") === null
-      ) {
-        setToggle(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [toggle]);
+  const handleClose = () => {
+    setToggle(false);
+  };
+
   return (
     <div className="relative">
       <nav className="flex flex-row justify-between">
@@ -35,8 +25,14 @@ function Navbar() {
       <div
         className={`${
           toggle ? "block" : "hidden"
-        } menu absolute w-full bg-white text-center`}
+        } menu fixed top-0 left-0 right-0 bottom-0 h-full w-full bg-white text-center`}
       >
+        <button
+          onClick={handleClick}
+          className="w-full bg-black text-center text-white"
+        >
+          Close
+        </button>
         <ul className="my-1 text-center">About us</ul>
         <ul className="my-1 text-center">Gallery</ul>
         <ul className="my-1 text-center">Rates</ul>
