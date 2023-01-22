@@ -4,6 +4,7 @@ import Link from "next/link";
 import Navbar from "../Components/Navbar";
 import Hero from "../Components/Hero";
 import Form from "../Components/Form";
+import TestForm from "../Components/Testform";
 
 import { api } from "../utils/api";
 
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
             {hello.data ? hello.data.greeting : "Loading tRPC query..."}
           </p>
         </div>
-        <Form className="my-4" />
+        <Form />
       </main>
     </>
   );

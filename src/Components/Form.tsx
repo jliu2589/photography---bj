@@ -2,30 +2,27 @@ import { z } from "Zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const formSchema = z.object({
+const FormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Must be a valid email" }),
-  phone: z.number().min(10, { message: "Phone number is required" }),
-  message: z.string(),
+  email: z.string().min(1, { message: "Email is required" }),
+  phone: z.string().min(10, { message: "Phone number is required" }),
+  message: z.string().min(1),
 });
 
-type FormSchema = z.infer<typeof formSchema>;
+type FormSchemaType = z.infer<typeof FormSchema>;
 
 function Form() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(formSchema) });
+  } = useForm<FormSchemaType>({ resolver: zodResolver(FormSchema) });
 
   //<FormSchema>({ resolver: zodResolver });
 
   const onSubmit = (data) => console.log(data);
 
-  console.log(errors);
   //: SubmitHandler<FormSchema>
   return (
     <div className="border border-white bg-yellow-100 p-4">
@@ -34,33 +31,31 @@ function Form() {
           <input
             id="name"
             type="text"
-            {...(register("name"), { required: true })}
-            placeholder="Name"
+            {...register("name")}
+            placeholder="name"
             className="my-1"
           />
         </label>
         <input
           id="email"
           type="text"
-          {...(register("email"), { required: true })}
-          placeholder="Email"
+          {...register("email")}
+          placeholder="email"
           className="my-1"
         />
         <input
           id="phone"
           type="text"
-          {...(register("phone"), { required: true })}
-          placeholder="Phone"
+          {...register("phone")}
+          placeholder="phone"
           className="my-1"
         />
         <textarea
           id="message"
           type="text"
-          {...(register("message"), { required: true })}
-          placeholder="Message"
-          className="mt-1"
-          rows="5"
-          cols="30"
+          {...register("message")}
+          placeholder="message"
+          className="row mt-1 resize-none"
         />
         <button className="mt-2 bg-blue-400 p-3" type="submit">
           Submit
