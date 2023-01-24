@@ -1,6 +1,7 @@
 import { z } from "Zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from "../utils/api";
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -12,6 +13,8 @@ const FormSchema = z.object({
 type FormSchemaType = z.infer<typeof FormSchema>;
 
 function Form() {
+  const formInput = api.form.formInput.useMutation();
+
   const {
     register,
     handleSubmit,
@@ -21,7 +24,10 @@ function Form() {
 
   //<FormSchema>({ resolver: zodResolver });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    formInput.mutate(data);
+    console.log(data);
+  };
 
   //: SubmitHandler<FormSchema>
   return (
