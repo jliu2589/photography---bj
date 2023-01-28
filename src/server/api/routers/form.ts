@@ -22,4 +22,8 @@ export const formRouter = createTRPCRouter({
         return form;
       }
     }),
+  getform: publicProcedure.query(async ({ ctx }) => {
+    const clientRequest = await ctx.prisma.form.findMany();
+    return clientRequest;
+  }),
 });
