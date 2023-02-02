@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
@@ -23,7 +24,7 @@ export const formRouter = createTRPCRouter({
       }
     }),
   getform: publicProcedure.query(async ({ ctx }) => {
-    const clientRequest = await ctx.prisma.form.findMany();
-    return clientRequest;
+    const clients = await ctx.prisma.form.findMany();
+    return clients;
   }),
 });
