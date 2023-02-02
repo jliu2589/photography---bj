@@ -20,11 +20,14 @@ function Form() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormSchemaType>({ resolver: zodResolver(FormSchema) });
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(FormSchema),
+    mode: "onChange",
+  });
 
   //<FormSchema>({ resolver: zodResolver });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: typeof FormSchema) => {
     formInput.mutate(data);
     console.log(data);
   };
