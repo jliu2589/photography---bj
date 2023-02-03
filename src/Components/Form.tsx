@@ -27,8 +27,6 @@ function Form() {
     mode: "onChange",
   });
 
-  //<FormSchema>({ resolver: zodResolver });
-
   const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
     formInput.mutate(data);
     console.log(data);
@@ -40,9 +38,8 @@ function Form() {
     });
   };
 
-  //: SubmitHandler<FormSchema>
   return (
-    <div className="border border-white bg-yellow-100 p-4">
+    <div className=" border border-white bg-yellow-100 p-4">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label>
           {errors.name && <p className="text-red-500">Name required</p>}
@@ -68,7 +65,7 @@ function Form() {
           type="text"
           {...register("phone")}
           placeholder="phone"
-          className="my-1"
+          className=" my-1"
         />
         {errors.message && <p className="text-red-500">Message required</p>}
         <textarea
@@ -76,13 +73,12 @@ function Form() {
           type="text"
           {...register("message")}
           placeholder="message"
-          className="row mt-1 resize-none"
+          className="row  mt-1 resize-none"
         />
         <button className="mt-2 bg-blue-400 p-3" type="submit">
           Submit
         </button>
       </form>
-      {JSON.stringify(getValues())}
     </div>
   );
 }
