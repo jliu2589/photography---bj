@@ -39,7 +39,8 @@ function Form() {
   };
 
   return (
-    <div className=" border border-white bg-yellow-100 p-4">
+    <div className=" border border-white p-4">
+      <h2>Contact Us</h2>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label>
           {errors.name && <p className="text-red-500">Name required</p>}

@@ -15,7 +15,7 @@ function Navbar() {
   };
 
   return (
-    <div className="relative">
+    <div className="h-13 relative">
       <nav className="flex flex-row justify-between">
         <div className="">Logo</div>
         <button className="hamburger-button mr-1 p-3" onClick={handleClick}>

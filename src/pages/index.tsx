@@ -5,12 +5,11 @@ import Hero from "../Components/Hero";
 import Form from "../Components/Form";
 import TestForm from "../Components/Testform";
 import Layout from "../Components/Layout";
+import AboutUs from "../Components/AboutUs";
 
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from your momma" });
-
   return (
     <>
       <Head>
@@ -19,13 +18,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <main className="flex min-h-screen flex-col items-center">
           <Hero />
-          <div className="my-4">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
-          </div>
+          <AboutUs />
           <Form />
         </main>
       </Layout>
